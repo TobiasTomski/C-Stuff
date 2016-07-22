@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <netcdf.h>
 
-#define FILE_NAME "test.nc"
+#define FILE_NAME "/home/t.tomski/C-Stuff/test.nc"
 
 #define NDIMS 4
 #define NT 24
@@ -33,9 +33,43 @@ int main()
         ERR(retval);
     }
 
+    if ((retval = nc_def_dim(ncid, "time", NT, &t_dimid))) {
+        ERR(retval);
+    }
+
+    if ((retval = nc_def_dim(ncid, "level", NL, &l_dimid))) {
+        ERR(retval);
+    }
+
+    if ((retval = nc_def_dim(ncid, "x", NX, &x_dimid))) {
+        ERR(retval);
+    }
+
+    if ((retval = nc_def_dim(ncid, "y", NY, &y_dimid))) {
+        ERR(retval);
+    }
+
+    dimids[0] = t_dimid;
+    dimids[1] = l_dimid;
+    dimids[2] = x_dimid;
+    dimids[3] = y_dimid;
+
+    if ((retval = nc_def_var(ncid, "data", NC_INT, NDIMS, dimids, &varid))) {
+        ERR(retval);
+    }
+
+    if ((retval = nc_enddef(ncid))) {
+        ERR(retval);
+    }
+
+    if ((retval = nc_put_var_int(ncid, varid, &data[0][0][0][0]))) {
+        ERR(retval);
+    }
+
     if ((retval = nc_close(ncid))) {
         ERR(retval);
     }
 
-    printf("ret: %d id: %d\n", retval, ncid);
+    printf("*** [info] SUCCESS writing example file test.nc! ***\n");
+    return 0;
 }

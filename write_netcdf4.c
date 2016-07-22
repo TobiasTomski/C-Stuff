@@ -29,9 +29,13 @@ int main()
         }
     }
 
-    if (retval = nc_create(FILE_NAME, NC_CLOBBER, &ncid)) {
+    if ((retval = nc_create(FILE_NAME, NC_CLOBBER, &ncid))) {
         ERR(retval);
     }
 
-    printf("%d\n", retval, ncid);
+    if ((retval = nc_close(ncid))) {
+        ERR(retval);
+    }
+
+    printf("ret: %d id: %d\n", retval, ncid);
 }

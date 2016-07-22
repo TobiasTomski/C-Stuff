@@ -1,3 +1,15 @@
+/*!
+*       @author:        Tobias Tomski (info@tobias-tomski.de)
+*       @date:          22.07.2016
+*       @description:
+*
+*       This program generates pi to the nth decimal, with n given by the user.
+*       This is the solution to one of the problems given by Karan Goel (https://github.com/karan/Projects/).
+*
+*       @compile:       gcc -lgmp -o pi_to_n_digits pi_to_n_digits.c
+*       @execute:       ./pi_to_n_digits <number_of_digits>
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

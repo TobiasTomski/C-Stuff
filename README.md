@@ -1,2 +1,2 @@
 # C-Stuff
-Some C stuff from training C.
+Some stuff, scripts and little programs gathered while practicing C.
